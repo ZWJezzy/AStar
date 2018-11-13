@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AStar", "AStar\AStar.vcxproj", "{131F1455-AB93-4262-B999-445CE58EC018}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{131F1455-AB93-4262-B999-445CE58EC018}.Debug|x64.ActiveCfg = Debug|x64
+		{131F1455-AB93-4262-B999-445CE58EC018}.Debug|x64.Build.0 = Debug|x64
+		{131F1455-AB93-4262-B999-445CE58EC018}.Debug|x86.ActiveCfg = Debug|Win32
+		{131F1455-AB93-4262-B999-445CE58EC018}.Debug|x86.Build.0 = Debug|Win32
+		{131F1455-AB93-4262-B999-445CE58EC018}.Release|x64.ActiveCfg = Release|x64
+		{131F1455-AB93-4262-B999-445CE58EC018}.Release|x64.Build.0 = Release|x64
+		{131F1455-AB93-4262-B999-445CE58EC018}.Release|x86.ActiveCfg = Release|Win32
+		{131F1455-AB93-4262-B999-445CE58EC018}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC01300D-F6AC-4D47-A27B-A7D12B6FCC61}
+	EndGlobalSection
+EndGlobal
