@@ -17,5 +17,3 @@ private:
 	Map * _map;
 	int _agentID;
 };
-
-void WalkingTask(Point start, Point target, Map* map, int agentID);

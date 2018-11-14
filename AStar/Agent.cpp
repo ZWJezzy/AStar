@@ -3,6 +3,8 @@
 
 int Agent::agentCount = 0;
 
+void WalkingTask(Point start, Point target, Map* map, int agentID);
+
 Agent::Agent()
 {
 }
@@ -34,9 +36,10 @@ void WalkingTask(Point start, Point target, Map* map, int agentID)
 
 	for (int i = 0; i < route.size(); i++) {
 		map->SetGridField(Point(route[i].x, route[i].y), 'A');
+		map->Draw();
 	}
 
-	map->Draw();
+	//map->Draw();
 }
 
 Agent::~Agent()

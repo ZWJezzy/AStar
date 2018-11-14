@@ -42,7 +42,6 @@ std::vector<Node> Pathfinder::GetPath(Point start, Point end)
 
 		tmpNode = GetNodeWithLowestFScore(_openList);
 
-		//DeleteNodeFromVector(_openList, currentLocation);
 		DeleteNodeFromVector(_openList, Point(tmpNode.x, tmpNode.y));
 		AddNodeToUniqueVector(_closedList, tmpNode);
 
@@ -59,9 +58,6 @@ std::vector<Node> Pathfinder::GetPath(Point start, Point end)
 	} while (!finished);
 
 	if(!targetReachable) return std::vector<Node>();
-	
-	//tmpList.clear();
-	//tmpNode = GetNodeWithLowestFScore(_closedList);
 
 	tmpNode = _closedList[_closedList.size()-2];
 	tmpList.clear();
@@ -104,31 +100,37 @@ std::vector<Node> Pathfinder::GetNeighbors(Point currentLocation)
 	std::vector<Node> nodes;
 
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) {
-		
-		nodes.push_back(Node(node));
-	}
+	if (node != nullptr) nodes.push_back(Node(node));
 
 	newPoint = new Point(currentLocation.x + 1, currentLocation.y);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) {
-		
-		nodes.push_back(Node(node));
-	}
+	if (node != nullptr) nodes.push_back(Node(node));
 
 	newPoint = new Point(currentLocation.x, currentLocation.y - 1);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) {
-		
-		nodes.push_back(Node(node));
-	}
+	if (node != nullptr) nodes.push_back(Node(node));
 
 	newPoint = new Point(currentLocation.x - 1, currentLocation.y);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) {
-		
-		nodes.push_back(Node(node));
-	}
+	if (node != nullptr) nodes.push_back(Node(node));
+
+
+	//The next 4 nodes received are just for supporting the diagonal traveling
+	newPoint = new Point(currentLocation.x + 1, currentLocation.y + 1);
+	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
+	if (node != nullptr) nodes.push_back(Node(node));
+
+	newPoint = new Point(currentLocation.x + 1, currentLocation.y - 1);
+	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
+	if (node != nullptr) nodes.push_back(Node(node));
+
+	newPoint = new Point(currentLocation.x - 1, currentLocation.y - 1);
+	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
+	if (node != nullptr) nodes.push_back(Node(node));
+
+	newPoint = new Point(currentLocation.x - 1, currentLocation.y + 1);
+	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
+	if (node != nullptr) nodes.push_back(Node(node));
 
 	return nodes;
 }
@@ -150,29 +152,6 @@ void Pathfinder::SetFScore(std::vector<Node> &nodes, Point end)
 		nodes[nodeIndex].hScore = xDistance + yDistance;
 		nodes[nodeIndex].fScore = nodes[nodeIndex].gScore + nodes[nodeIndex].hScore;
 	}
-
-	//int x = 0;
-	//int y = 0;
-
-	//std::vector<std::vector<Node*>> grid = _map->GetGrid();
-
-	//for (int nodeIndex = 0; nodeIndex < nodes.size(); nodeIndex++) {
-	//	if (nodes[nodeIndex].fScore > 0) continue;
-
-	//	x = nodes[nodeIndex].x;
-	//	y = nodes[nodeIndex].y;
-	//	if (grid[y][x]->parent != nullptr) grid[y][x]->gScore += grid[y][x]->parent->gScore+1;
-	//	else grid[y][x]->gScore += 1;
-
-	//	int xDistance = end.x - grid[y][x]->x;
-	//	int yDistance = end.y - grid[y][x]->y;
-
-	//	xDistance = xDistance < 0 ? xDistance *= -1 : xDistance;
-	//	yDistance = yDistance < 0 ? yDistance *= -1 : yDistance;
-
-	//	nodes[nodeIndex].hScore = xDistance + yDistance;
-	//	nodes[nodeIndex].fScore = nodes[nodeIndex].gScore + nodes[nodeIndex].hScore;
-	//}
 }
 
 void Pathfinder::AddNodesToUniqueVector(std::vector<Node> &list, std::vector<Node> nodes)

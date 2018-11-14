@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Map.h"
 #include <iostream>
+#include <Windows.h>
 
 Map::Map()
 {
@@ -70,6 +71,8 @@ void Map::PrepareNonWalkableNodes(std::vector<Point> points)
 
 void Map::Draw()
 {
+	Sleep(150);
+	system("cls");
 	for (int i = _heigth-1; i >= 0; i--) {
 		for (int j = 0; j < _width; j++) {
 			if (_grid.at(i).at(j)->walkable)
@@ -82,6 +85,7 @@ void Map::Draw()
 	}
 }
 
+//Just implemented for some debugging sessions
 void Map::Draw(Point start, Point target)
 {
 	for (int i = 0; i < _heigth; i++) {
