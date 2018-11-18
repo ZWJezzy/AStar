@@ -28,14 +28,7 @@ Node::Node(Node * node)
 	fScore = node->fScore;
 	parent = node->parent;
 	walkable = node->walkable;
-}
-
-void Node::calcG()
-{
-	if (this->parent != nullptr)
-	{
-		this->gScore = this->parent->gScore + 1;
-	}
+	isDiagonal = node->isDiagonal;
 }
 
 bool operator==(Node node1, Node node2)

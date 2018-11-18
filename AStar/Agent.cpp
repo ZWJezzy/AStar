@@ -21,7 +21,8 @@ void Agent::Walk(Point start, Point target)
 	try
 	{
 		std::thread first(WalkingTask, start, target, _map, _agentID);
-		first.join();
+		//first.join();
+		first.detach();
 	}
 	catch (const std::exception&)
 	{

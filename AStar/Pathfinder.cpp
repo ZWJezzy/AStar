@@ -118,19 +118,31 @@ std::vector<Node> Pathfinder::GetNeighbors(Point currentLocation)
 	//The next 4 nodes received are just for supporting the diagonal traveling
 	newPoint = new Point(currentLocation.x + 1, currentLocation.y + 1);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) nodes.push_back(Node(node));
+	if (node != nullptr) {
+		node->isDiagonal = true;
+		nodes.push_back(Node(node));
+	}
 
 	newPoint = new Point(currentLocation.x + 1, currentLocation.y - 1);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) nodes.push_back(Node(node));
+	if (node != nullptr) {
+		node->isDiagonal = true;
+		nodes.push_back(Node(node));
+	}
 
 	newPoint = new Point(currentLocation.x - 1, currentLocation.y - 1);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) nodes.push_back(Node(node));
+	if (node != nullptr) {
+		node->isDiagonal = true;
+		nodes.push_back(Node(node));
+	}
 
 	newPoint = new Point(currentLocation.x - 1, currentLocation.y + 1);
 	node = _map->IsNodeOutOfMap(*newPoint) ? nullptr : new Node(grid[newPoint->y][newPoint->x]);
-	if (node != nullptr) nodes.push_back(Node(node));
+	if (node != nullptr) {
+		node->isDiagonal = true;
+		nodes.push_back(Node(node));
+	}
 
 	return nodes;
 }
@@ -140,8 +152,10 @@ void Pathfinder::SetFScore(std::vector<Node> &nodes, Point end)
 	for (int nodeIndex = 0; nodeIndex < nodes.size(); nodeIndex++) {
 		if (nodes[nodeIndex].fScore > 0) continue;
 
-		if (nodes[nodeIndex].parent != nullptr) nodes[nodeIndex].gScore += nodes[nodeIndex].parent->gScore + 1;
-		else nodes[nodeIndex].gScore += 1;
+		if (nodes[nodeIndex].parent != nullptr) nodes[nodeIndex].gScore += nodes[nodeIndex].parent->gScore + 10;
+		else nodes[nodeIndex].gScore += 10;
+
+		if (nodes[nodeIndex].isDiagonal) nodes[nodeIndex].gScore += 4;
 
 		int xDistance = end.x - nodes[nodeIndex].x;
 		int yDistance = end.y - nodes[nodeIndex].y;
